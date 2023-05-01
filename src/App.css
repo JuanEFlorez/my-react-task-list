@@ -1,0 +1,13 @@
+.task {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+.task label {
+  font-size: 18px;
+  color: #333;
+  margin-left: 10px;
+}
