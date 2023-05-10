@@ -5,7 +5,6 @@ function useTaskList() {
   const [tasks, setTasks] = useState(
     JSON.parse(localStorage.getItem("tasks")) || []
   );
-
   // Función para crear una nueva tarea y guardarla en el localStorage
   function createTask(name) {
     // Crea un objeto con los datos de la nueva tarea (nombre, id y estado de completado)
