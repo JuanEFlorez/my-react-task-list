@@ -6,9 +6,8 @@ import "./App.css";
 function App() {
   return (
     <div>
-      <h1>Task List</h1>
+      <Header />
       <TaskList />
-      <div className="add-task-form"></div>
     </div>
   );
 }
