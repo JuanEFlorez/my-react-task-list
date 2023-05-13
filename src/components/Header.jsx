@@ -1,11 +1,10 @@
 import React from "react";
+import "../App.css";
 
 function Header(props) {
-  const { title } = props;
-
   return (
     <header>
-      <h1>{title}</h1>
+      <h1 className="header-container">My Task-List</h1>
     </header>
   );
 }
