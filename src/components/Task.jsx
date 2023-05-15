@@ -1,55 +1,53 @@
 import React, { useState } from "react";
 
-function Task(props) {
-  // Destructuramos las props para obtener los valores necesarios
-  const { id, name, completed, onCheck, onDelete, onEdit } = props;
-  // Definimos los estados locales necesarios
-  const [isEditing, setIsEditing] = useState(false);
-  const [updatedName, setUpdatedName] = useState(name);
+function Task({ task, onUpdateTask, onDeleteTask }) {
+  const [editing, setEditing] = useState(false);
+  const [editedName, setEditedName] = useState(task.name);
+  const [editedDescription, setEditedDescription] = useState(task.description);
 
-  // Función para actualizar el valor de updatedName cuando cambia el input de edición
-  function handleNameChange(e) {
-    setUpdatedName(e.target.value);
+  function handleCheck(completed) {
+    onUpdateTask(task.id, { completed });
   }
 
-  // Función para activar el modo edición
   function handleEdit() {
-    setIsEditing(true);
+    setEditing(true);
   }
 
-  // Función para cancelar la edición
-  function handleCancel() {
-    setIsEditing(false);
-    setUpdatedName(name);
-  }
-
-  // Función para guardar los cambios
   function handleSave() {
-    onEdit(id, updatedName);
-    setIsEditing(false);
+    onUpdateTask(task.id, { name: editedName, description: editedDescription });
+    setEditing(false);
+  }
+
+  function handleDelete() {
+    onDeleteTask(task.id);
   }
 
   return (
     <div className="task">
-      {/* Checkbox para marcar la tarea como completada */}
-      <input
-        type="checkbox"
-        checked={completed}
-        onChange={(e) => onCheck(id, e.target.checked)}
-      />
-      {/* Si estamos en modo edición, mostramos el input y los botones de guardar y cancelar */}
-      {isEditing ? (
+      {editing ? (
         <>
-          <input type="text" value={updatedName} onChange={handleNameChange} />
+          <input
+            type="text"
+            value={editedName}
+            onChange={(e) => setEditedName(e.target.value)}
+          />
+          <input
+            type="text"
+            value={editedDescription}
+            onChange={(e) => setEditedDescription(e.target.value)}
+          />
           <button onClick={handleSave}>Save</button>
-          <button onClick={handleCancel}>Cancel</button>
         </>
       ) : (
-        // Si no estamos en modo edición, mostramos el nombre de la tarea y los botones de editar y borrar
         <>
-          <span className={completed ? "completed" : ""}>{name}</span>
+          <input
+            type="checkbox"
+            checked={task.completed}
+            onChange={(e) => handleCheck(e.target.checked)}
+          />
+          <h3>{task.name}</h3>
           <button onClick={handleEdit}>Edit</button>
-          <button onClick={() => onDelete(id)}>Delete</button>
+          <button onClick={handleDelete}>Delete</button>
         </>
       )}
     </div>

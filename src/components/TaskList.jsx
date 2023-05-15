@@ -23,6 +23,10 @@ function TaskList() {
     }
   }
 
+  function handleUpdateTask(id, updatedTask) {
+    updateTask(id, updatedTask);
+  }
+
   return (
     <div className="task-list">
       <div className="task-form">
@@ -46,15 +50,9 @@ function TaskList() {
       {tasks.map((task) => (
         <Task
           key={task.id}
-          id={task.id}
-          name={task.name}
-          description={task.description}
-          completed={task.completed}
-          onCheck={(id, completed) => updateTask(id, { completed })}
-          onDelete={(id) => handleDeleteTask(id)}
-          onEdit={(id, name, description) =>
-            updateTask(id, { name, description })
-          }
+          task={task}
+          onUpdateTask={handleUpdateTask}
+          onDeleteTask={handleDeleteTask}
         />
       ))}
     </div>
