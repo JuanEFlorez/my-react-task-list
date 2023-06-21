@@ -21,7 +21,7 @@ function Menu() {
           </BreadcrumbItem>
 
           <BreadcrumbItem className="mr-3">
-            <Link to="/Task-List">Tasks</Link>
+            <Link to="/Task-List">Tasks List</Link>
           </BreadcrumbItem>
 
           <BreadcrumbItem>
