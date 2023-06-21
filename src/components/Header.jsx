@@ -4,7 +4,7 @@ import "../App.css";
 function Header(props) {
   return (
     <header>
-      <h1 className="header-container">My Task-List</h1>
+      <h1 className="header-container">My Task-List.</h1>
     </header>
   );
 }
