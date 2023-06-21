@@ -11,8 +11,9 @@ import {
   Input,
   useDisclosure,
   Flex,
+  Text,
 } from "@chakra-ui/react";
-import { CheckIcon, CloseIcon, EditIcon } from "@chakra-ui/icons";
+import { CheckIcon, EditIcon } from "@chakra-ui/icons";
 
 function EditTaskModal({ task, onUpdateTask }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -40,19 +41,20 @@ function EditTaskModal({ task, onUpdateTask }) {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Editar tarea</ModalHeader>
+          <ModalHeader>Edit task.</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
+            <Text>Name:</Text>
             <Input
               type="text"
               value={editedName}
               onChange={(e) => setEditedName(e.target.value)}
             />
+            <Text mt={5}>Description:</Text>
             <Input
               type="text"
               value={editedDescription}
               onChange={(e) => setEditedDescription(e.target.value)}
-              mt={2}
             />
           </ModalBody>
 
